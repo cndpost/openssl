@@ -1,4 +1,65 @@
+ Frustrated by the outdated instructions of building OpenSSL on different platforms. I am collecting a static snapshot
+ of the versions I forked on 5/16/2019 for my own use, and docuement the build steps that I have tested. 
+  
+ Copyright (c) 2019 John Xu.  This version works for Windows and tested on windows 10 using Visual Studio 2017. 
+                              For version works for Sony Playstation platforms. See https://github.com/v-yuehxu/openssl
 
+ The 64 bit build instruction for windows is as follows:
+
+  0. get the code from my forked repo location:
+
+       git clone https://github.com/cndpost/openssl
+
+  1. launch a Visual Studio X64 Native tools Command prompt for VS 2017 (if you use X64_86 Cross Platform tools, you will
+      have following errors in the end: fatal error LNK1112: module machine type 'x64' conflicts with target machine type 'x86')
+
+  2. change to the directory where you have copied openssl sources, such as cd c:\myPath\openssl
+
+  3. configure for the target OS with the command:
+        
+         perl Configure VC-WIN64A
+
+      You may also be interested to set more configuration options as documented in the general INSTALL 
+      For instance: 
+ 
+         perl Configure no-asm VC-WIN64A.
+
+  4. run command:
+
+         NMake
+
+ The 32 bit build instruction for windows is as follows:
+
+  0. get the code from my forked repo location:
+
+       git clone https://github.com/cndpost/openssl
+
+  1. launch a Visual Studio x86 Native tools Command prompt for VS 2017 
+
+  2. change to the directory where you have copied openssl sources, such as cd c:\myPath\openssl
+
+  3. configure for the target OS with the command:
+        
+         perl Configure VC-WIN32
+
+      You may also be interested to set more configuration options as documented in the general INSTALL 
+      For instance: 
+ 
+         perl Configure no-asm VC-WIN32
+
+  4. If we had build 64 bit before, and now we switch to 32 bit version, we need to run following command to clean the existing .obj files:
+
+         NMake clean
+
+  5. run command:
+
+         NMake
+
+
+
+
+
+=====================Original Readme from https://github.com/openssl================
  OpenSSL 3.0.0-dev
 
  Copyright (c) 1998-2018 The OpenSSL Project
